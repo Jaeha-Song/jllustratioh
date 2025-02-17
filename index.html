@@ -209,29 +209,42 @@
         </div>
     </div>
 
-    <!-- ✅ SHOP 섹션 -->
-    <div class="container" id="shop">
-        <h2>Shop</h2>
-        <p>🚧 여기에 상점 관련 콘텐츠를 추가할 수 있습니다.</p>
+    <!-- 모달 창 -->
+    <div class="modal" id="imageModal" onclick="closeModal()">
+        <span class="arrow left" onclick="prevImage(event)">&#9664;</span>
+        <img id="modalImg">
+        <div class="title" id="modalTitle"></div>
+        <span class="arrow right" onclick="nextImage(event)">&#9654;</span>
     </div>
-
-    <!-- ✅ CONTACT 섹션 -->
-    <div class="container" id="contact">
-        <h2>Contact</h2>
-        <p>📌 여기에 연락처 및 문의 정보를 추가할 수 있습니다.</p>
-    </div>
-
-    <footer>
-        &copy; 2025 Laurent Durieux. All rights reserved.
-    </footer>
 
     <script>
-        function showSection(sectionId) {
-            document.querySelectorAll(".container").forEach(section => section.style.display = "none");
-            document.getElementById(sectionId).style.display = "block";
+        const images = document.querySelectorAll(".gallery img");
+        let currentIndex = 0;
 
-            document.querySelectorAll("nav a").forEach(link => link.classList.remove("active"));
-            event.target.classList.add("active");
+        function openModal(index) {
+            const modal = document.getElementById("imageModal");
+            currentIndex = index;
+            modal.style.display = "flex";
+            setTimeout(() => modal.classList.add("show"), 10);
+            updateModal();
+        }
+
+        function closeModal() {
+            const modal = document.getElementById("imageModal");
+            modal.classList.remove("show");
+            setTimeout(() => modal.style.display = "none", 400);
+        }
+
+        function updateModal() {
+            const modalImg = document.getElementById("modalImg");
+            const modalTitle = document.getElementById("modalTitle");
+
+            modalTitle.style.opacity = "0";
+            setTimeout(() => {
+                modalImg.src = images[currentIndex].src;
+                modalTitle.textContent = images[currentIndex].alt;
+                modalTitle.style.opacity = "1";
+            }, 100);
         }
     </script>
 

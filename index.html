@@ -88,12 +88,24 @@
             line-height: 1.6;
         }
 
-        /* ✅ 갤러리 스타일 */
+        /* ✅ 3줄 레이아웃을 위한 갤러리 스타일 */
         .gallery {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
             gap: 15px;
             margin-top: 20px;
+        }
+
+        .gallery img {
+            width: 100%;
+            height: auto;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: transform 0.3s;
+        }
+
+        .gallery img:hover {
+            transform: scale(1.05);
         }
 
         .gallery img {
@@ -164,6 +176,14 @@
         .arrow.right {
             right: 20px;
         }
+        /* ✅ 푸터 중앙 정렬 */
+        footer {
+            text-align: center;
+            padding: 20px;
+            background-color: white;
+            font-size: 14px;
+            color: #777;
+        }
     </style>
 </head>
 <body>
@@ -199,6 +219,22 @@
         </div>
     </div>
 
+        <!-- ✅ SHOP 섹션 -->
+    <div class="container" id="shop">
+        <h2>Shop</h2>
+        <p>🚧 여기에 상점 관련 콘텐츠를 추가할 수 있습니다.</p>
+    </div>
+
+    <!-- ✅ CONTACT 섹션 -->
+    <div class="container" id="contact">
+        <h2>Contact</h2>
+        <p>📌 여기에 연락처 및 문의 정보를 추가할 수 있습니다.</p>
+    </div>
+
+    <footer>
+        &copy; 2025 Laurent Durieux. All rights reserved.
+    </footer>
+    
     <!-- 모달 창 -->
     <div class="modal" id="imageModal" onclick="closeModal()">
         <span class="arrow left" onclick="prevImage(event)">&#9664;</span>

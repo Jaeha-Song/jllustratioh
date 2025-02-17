@@ -3,121 +3,97 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>SONG JAEHA</title>
-    <link rel="icon" href="favicon.ico" type="image/x-icon">
+    <title>Laurent Durieux Style</title>
     <style>
-        body {
+        * {
             margin: 0;
-            background-color: white; /* 배경색 변경 가능 */
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
             font-family: Arial, sans-serif;
+            background-color: #f8f8f8;
         }
+
+        header {
+            background-color: white;
+            padding: 20px;
+            text-align: center;
+            border-bottom: 2px solid #ddd;
+        }
+
+        .logo {
+            font-size: 24px;
+            font-weight: bold;
+        }
+
+        nav {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            margin-top: 10px;
+        }
+
+        nav a {
+            text-decoration: none;
+            color: black;
+            font-weight: bold;
+        }
+
         .container {
-            display: flex;
-            margin: 100px 50px 0 50px;
+            max-width: 1200px;
+            margin: auto;
+            padding: 20px;
         }
-        .left-panel {
-            width: 300px;
-            margin-right: 50px;
-            display: flex;
-            flex-direction: column;
+
+        .gallery {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 15px;
+            margin-top: 20px;
         }
-        .top-image {
-            flex: 1;
-            background-color: #f0f0f0; /* 이미지 영역 */
-            margin-bottom: 50px;
-        }
-        .menu {
-            display: flex;
-            flex-direction: column;
-        }
-        .menu-item {
-            padding: 10px;
-            cursor: pointer;
-        }
-        .menu-item.selected {
-            color: blue; /* 선택된 메뉴 색상 */
-        }
-        .right-panel {
-            flex: 1;
-            display: flex;
-            flex-wrap: wrap;
-            gap: 50px; /* 이미지 간격 */
-        }
-        .image-item {
-            width: 300px; /* 이미지 고정 폭 */
-            height: 200px; /* 이미지 높이 */
-            background-color: #e0e0e0; /* 더미 이미지 */
-            cursor: pointer;
-            position: relative;
-        }
-        .image-item img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-        }
-        .bio {
-            margin-top: 50px;
-        }
-        .expanded-image {
-            position: absolute;
-            top: 0;
-            left: 0;
-            z-index: 10;
-            display: none;
+
+        .gallery img {
             width: 100%;
             height: auto;
+            border-radius: 8px;
+        }
+
+        footer {
+            text-align: center;
+            padding: 20px;
+            margin-top: 30px;
+            background-color: #222;
+            color: white;
         }
     </style>
 </head>
 <body>
+
+    <header>
+        <div class="logo">Laurent Durieux</div>
+        <nav>
+            <a href="#">Home</a>
+            <a href="#">Gallery</a>
+            <a href="#">Shop</a>
+            <a href="#">Contact</a>
+        </nav>
+    </header>
+
     <div class="container">
-        <div class="left-panel">
-            <div class="top-image"></div>
-            <div class="menu">
-                <div class="menu-item selected" onclick="showGallery('portfolio')">포트폴리오</div>
-                <div class="menu-item" onclick="showGallery('blog')">블로그</div>
-                <div class="menu-item" onclick="showGallery('contact')">콘텍트</div>
-                <div class="menu-item" onclick="showGallery('bio')">바이오</div>
-                <div class="menu-item" onclick="showGallery('shop')">숍</div>
-                <div class="bio">작가의 소개입니다</div>
-            </div>
-        </div>
-        <div class="right-panel" id="gallery">
-            <div class="image-item" onclick="expandImage(this)">
-                <img src="image1.jpg" alt="Image 1">
-                <img class="expanded-image" src="image1.jpg" alt="Expanded Image 1">
-            </div>
-            <div class="image-item" onclick="expandImage(this)">
-                <img src="image2.jpg" alt="Image 2">
-                <img class="expanded-image" src="image2.jpg" alt="Expanded Image 2">
-            </div>
-            <div class="image-item" onclick="expandImage(this)">
-                <img src="image3.jpg" alt="Image 3">
-                <img class="expanded-image" src="image3.jpg" alt="Expanded Image 3">
-            </div>
-            <!-- 추가 이미지 항목 -->
+        <h2>Featured Artwork</h2>
+        <div class="gallery">
+            <img src="https://via.placeholder.com/300" alt="Artwork 1">
+            <img src="https://via.placeholder.com/300" alt="Artwork 2">
+            <img src="https://via.placeholder.com/300" alt="Artwork 3">
+            <img src="https://via.placeholder.com/300" alt="Artwork 4">
         </div>
     </div>
 
-    <script>
-        function showGallery(menu) {
-            const menuItems = document.querySelectorAll('.menu-item');
-            menuItems.forEach(item => {
-                item.classList.remove('selected');
-            });
-            document.querySelector(`.menu-item:contains(${menu})`).classList.add('selected');
+    <footer>
+        &copy; 2025 Laurent Durieux. All rights reserved.
+    </footer>
 
-            // 여기서 각 메뉴에 맞는 갤러리를 보여주는 로직을 추가할 수 있습니다.
-        }
-
-        function expandImage(imageItem) {
-            const expandedImage = imageItem.querySelector('.expanded-image');
-            expandedImage.style.display = 'block';
-            expandedImage.style.position = 'absolute';
-            expandedImage.style.zIndex = '10';
-            expandedImage.style.left = '300px'; // 좌측 메뉴가 사라지도록 위치 조정
-            expandedImage.style.top = '0';
-        }
-    </script>
 </body>
 </html>

@@ -47,8 +47,9 @@
             text-decoration: none;
             color: black;
             font-weight: bold;
-            font-size: 18px; /* 🔹 내비게이션 폰트 크기 */
+            font-size: 18px;
             transition: color 0.3s ease-in-out;
+            cursor: pointer;
         }
 
         /* 🔥 클릭된 메뉴 활성화 색상 */
@@ -61,6 +62,7 @@
             max-width: 1200px;
             margin: auto;
             padding: 20px;
+            display: none; /* 기본적으로 숨김 */
         }
 
         /* ✅ 제목 및 소제목 스타일 */
@@ -79,8 +81,8 @@
         }
 
         p {
-            font-size: 16px; /* 🔹 본문 폰트 크기 */
-            font-family: "Arial", sans-serif; /* 본문 폰트 */
+            font-size: 16px;
+            font-family: "Arial", sans-serif;
             color: #444;
             line-height: 1.6;
         }
@@ -105,6 +107,52 @@
             transform: scale(1.05);
         }
 
+        /* ✅ 모달 창 스타일 */
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 1000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.8);
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            text-align: center;
+            opacity: 0;
+            transform: scale(0);
+            transition: transform 0.4s ease-out, opacity 0.4s ease-out;
+        }
+
+        .modal.show {
+            opacity: 1;
+            transform: scale(1);
+        }
+
+        .modal img {
+            max-width: 90%;
+            max-height: 80%;
+            border-radius: 10px;
+            cursor: pointer;
+        }
+
+        .modal .title {
+            margin-top: 10px;
+            font-size: 20px;
+            color: white;
+            font-weight: bold;
+        }
+
+        .modal .close {
+            position: absolute;
+            top: 20px;
+            right: 30px;
+            font-size: 30px;
+            color: white;
+            cursor: pointer;
+        }
     </style>
 </head>
 <body>
@@ -112,34 +160,34 @@
     <header>
         <div class="logo">Laurent Durieux</div>
         <nav>
-            <a href="#" class="active" onclick="setActive(event)">Home</a>
-            <a href="#" onclick="setActive(event)">Gallery</a>
-            <a href="#" onclick="setActive(event)">Shop</a>
-            <a href="#" onclick="setActive(event)">Contact</a>
+            <a onclick="showSection('gallery')" class="active">Gallery</a>
+            <a onclick="showSection('shop')">Shop</a>
+            <a onclick="showSection('contact')">Contact</a>
         </nav>
     </header>
 
-    <div class="container">
+    <!-- GALLERY 섹션 (기본 표시) -->
+    <div class="container" id="gallery" style="display: block;">
         <h2>Featured Artwork</h2>
         <h3>Special Collection</h3>
         <p>이곳에 갤러리 소개 및 설명을 추가할 수 있습니다.</p>
         
         <div class="gallery">
-            <img src="https://via.placeholder.com/300" alt="Sunset Over the City">
-            <img src="https://via.placeholder.com/300" alt="Mysterious Forest">
-            <img src="https://via.placeholder.com/300" alt="Ocean Breeze">
-            <img src="https://via.placeholder.com/300" alt="Vintage Street">
+            <img src="https://via.placeholder.com/300" alt="Sunset Over the City" onclick="openModal(this, 'Sunset Over the City')">
+            <img src="https://via.placeholder.com/300" alt="Mysterious Forest" onclick="openModal(this, 'Mysterious Forest')">
+            <img src="https://via.placeholder.com/300" alt="Ocean Breeze" onclick="openModal(this, 'Ocean Breeze')">
+            <img src="https://via.placeholder.com/300" alt="Vintage Street" onclick="openModal(this, 'Vintage Street')">
         </div>
     </div>
 
-    <!-- SHOP 섹션: 나중에 추가할 내용 -->
-    <div class="container">
+    <!-- SHOP 섹션 -->
+    <div class="container" id="shop">
         <h2>Shop</h2>
         <p>🚧 여기에 상점 관련 콘텐츠를 추가할 수 있습니다.</p>
     </div>
 
-    <!-- CONTACT 섹션: 나중에 추가할 내용 -->
-    <div class="container">
+    <!-- CONTACT 섹션 -->
+    <div class="container" id="contact">
         <h2>Contact</h2>
         <p>📌 여기에 연락처 및 문의 정보를 추가할 수 있습니다.</p>
     </div>
@@ -148,14 +196,34 @@
         &copy; 2025 Laurent Durieux. All rights reserved.
     </footer>
 
-    <script>
-        // ✅ 메뉴 클릭 시 활성화(active) 클래스를 변경하는 함수
-        function setActive(event) {
-            // 모든 메뉴에서 active 클래스 제거
-            document.querySelectorAll("nav a").forEach(link => link.classList.remove("active"));
+    <!-- 모달 창 -->
+    <div class="modal" id="imageModal">
+        <span class="close" onclick="closeModal()">&times;</span>
+        <img id="modalImg" onclick="closeModal()">
+        <div class="title" id="modalTitle"></div>
+    </div>
 
-            // 클릭된 요소에 active 클래스 추가
+    <script>
+        function showSection(sectionId) {
+            document.querySelectorAll(".container").forEach(section => section.style.display = "none");
+            document.getElementById(sectionId).style.display = "block";
+
+            document.querySelectorAll("nav a").forEach(link => link.classList.remove("active"));
             event.target.classList.add("active");
+        }
+
+        function openModal(imgElement, title) {
+            const modal = document.getElementById("imageModal");
+            const modalImg = document.getElementById("modalImg");
+            const modalTitle = document.getElementById("modalTitle");
+
+            modal.style.display = "flex";
+            modalImg.src = imgElement.src;
+            modalTitle.textContent = title;
+        }
+
+        function closeModal() {
+            document.getElementById("imageModal").style.display = "none";
         }
     </script>
 

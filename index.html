@@ -16,6 +16,7 @@
             box-sizing: border-box;
         }
 
+        /* ✅ 전체 배경을 흰색으로 통일 */
         body {
             font-family: "Arial", sans-serif;
             background-color: #ffffff;
@@ -62,7 +63,7 @@
             max-width: 1200px;
             margin: auto;
             padding: 20px;
-            display: none;
+            display: none; /* 기본적으로 숨김 */
             background-color: white;
         }
 
@@ -108,7 +109,7 @@
             transform: scale(1.05);
         }
 
-        /* ✅ 모달 창 스타일 */
+        /* ✅ 모달 창 스타일 (투명도 변화 효과 추가) */
         .modal {
             display: flex;
             position: fixed;
@@ -137,6 +138,7 @@
             max-height: 80%;
             border-radius: 10px;
             cursor: pointer;
+            transition: opacity 0.4s ease-in-out;
         }
 
         .modal .title {
@@ -144,25 +146,6 @@
             font-size: 20px;
             color: white;
             font-weight: bold;
-        }
-
-        /* ✅ 좌우 화살표 스타일 */
-        .arrow {
-            position: absolute;
-            top: 50%;
-            transform: translateY(-50%);
-            font-size: 40px; /* 🔹 아이콘 크기 변경 가능 */
-            color: white;
-            cursor: pointer;
-            user-select: none;
-        }
-
-        .arrow.left {
-            left: 20px;
-        }
-
-        .arrow.right {
-            right: 20px;
         }
     </style>
 </head>
@@ -177,32 +160,43 @@
         </nav>
     </header>
 
-    <!-- GALLERY 섹션 -->
+    <!-- GALLERY 섹션 (기본 표시) -->
     <div class="container" id="gallery" style="display: block;">
         <h2>Featured Artwork</h2>
         <h3>Special Collection</h3>
         <p>이곳에 갤러리 소개 및 설명을 추가할 수 있습니다.</p>
         
         <div class="gallery">
-            <img src="https://via.placeholder.com/300" alt="Sunset Over the City" onclick="openModal(0)">
-            <img src="https://via.placeholder.com/300" alt="Mysterious Forest" onclick="openModal(1)">
-            <img src="https://via.placeholder.com/300" alt="Ocean Breeze" onclick="openModal(2)">
-            <img src="https://via.placeholder.com/300" alt="Vintage Street" onclick="openModal(3)">
+            <img src="https://via.placeholder.com/300" alt="Sunset Over the City" onclick="openModal(this, 'Sunset Over the City')">
+            <img src="https://via.placeholder.com/300" alt="Mysterious Forest" onclick="openModal(this, 'Mysterious Forest')">
+            <img src="https://via.placeholder.com/300" alt="Ocean Breeze" onclick="openModal(this, 'Ocean Breeze')">
+            <img src="https://via.placeholder.com/300" alt="Vintage Street" onclick="openModal(this, 'Vintage Street')">
         </div>
     </div>
 
+    <!-- SHOP 섹션 -->
+    <div class="container" id="shop">
+        <h2>Shop</h2>
+        <p>🚧 여기에 상점 관련 콘텐츠를 추가할 수 있습니다.</p>
+    </div>
+
+    <!-- CONTACT 섹션 -->
+    <div class="container" id="contact">
+        <h2>Contact</h2>
+        <p>📌 여기에 연락처 및 문의 정보를 추가할 수 있습니다.</p>
+    </div>
+
+    <footer>
+        &copy; 2025 Laurent Durieux. All rights reserved.
+    </footer>
+
     <!-- 모달 창 -->
     <div class="modal" id="imageModal" onclick="closeModal()">
-        <span class="arrow left" onclick="prevImage(event)">&#9664;</span>
         <img id="modalImg">
         <div class="title" id="modalTitle"></div>
-        <span class="arrow right" onclick="nextImage(event)">&#9654;</span>
     </div>
 
     <script>
-        const images = document.querySelectorAll(".gallery img");
-        let currentIndex = 0;
-
         function showSection(sectionId) {
             document.querySelectorAll(".container").forEach(section => section.style.display = "none");
             document.getElementById(sectionId).style.display = "block";
@@ -211,48 +205,28 @@
             event.target.classList.add("active");
         }
 
-        function openModal(index) {
+        function openModal(imgElement, title) {
             const modal = document.getElementById("imageModal");
             const modalImg = document.getElementById("modalImg");
             const modalTitle = document.getElementById("modalTitle");
 
-            currentIndex = index;
             modal.style.display = "flex";
-            setTimeout(() => modal.classList.add("show"), 10);
+            setTimeout(() => {
+                modal.classList.add("show");
+            }, 10); // 약간의 지연 후 효과 적용
 
-            updateModal();
+            modalImg.src = imgElement.src;
+            modalTitle.textContent = title;
         }
 
         function closeModal() {
             const modal = document.getElementById("imageModal");
+
             modal.classList.remove("show");
-            setTimeout(() => modal.style.display = "none", 400);
+            setTimeout(() => {
+                modal.style.display = "none";
+            }, 400); // 0.4초 후 완전히 숨김
         }
-
-        function updateModal() {
-            const modalImg = document.getElementById("modalImg");
-            const modalTitle = document.getElementById("modalTitle");
-
-            modalImg.src = images[currentIndex].src;
-            modalTitle.textContent = images[currentIndex].alt;
-        }
-
-        function prevImage(event) {
-            event.stopPropagation();
-            currentIndex = (currentIndex - 1 + images.length) % images.length;
-            updateModal();
-        }
-
-        function nextImage(event) {
-            event.stopPropagation();
-            currentIndex = (currentIndex + 1) % images.length;
-            updateModal();
-        }
-
-        document.addEventListener("keydown", function(event) {
-            if (event.key === "ArrowLeft") prevImage(event);
-            if (event.key === "ArrowRight") nextImage(event);
-        });
     </script>
 
 </body>

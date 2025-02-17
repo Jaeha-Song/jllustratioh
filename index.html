@@ -3,43 +3,45 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>JAEHA SONG</title>
+    <title>포트폴리오</title>
     <link rel="stylesheet" href="styles.css">
-    <link rel="icon" href="favicon.ico" type="image/x-icon">
 </head>
 <body>
-    <header>
-        <h1>내 포트폴리오</h1>
-        <nav>
-            <ul>
-                <li><a href="#about">소개</a></li>
-                <li><a href="#projects">프로젝트</a></li>
-                <li><a href="#contact">연락처</a></li>
-            </ul>
-        </nav>
-    </header>
-    
-    <section id="about">
-        <h2>소개</h2>
-        <p>여기에 자기소개를 작성하세요.</p>
-    </section>
-    
-    <section id="projects">
-        <h2>프로젝트</h2>
-        <div class="project">
-            <h3>프로젝트 제목</h3>
-            <p>프로젝트 설명을 작성하세요.</p>
-        </div>
-        <!-- 추가 프로젝트를 여기에 추가 -->
-    </section>
-    
-    <section id="contact">
-        <h2>연락처</h2>
-        <p>이메일: example@example.com</p>
-    </section>
-    
-    <footer>
-        <p>&copy; 2025 내 이름</p>
-    </footer>
+    <div class="container">
+        <aside class="sidebar">
+            <div class="logo">
+                <img src="logo.png" alt="로고" class="logo-image">
+                <img src="symbol.png" alt="심볼" class="symbol-image">
+            </div>
+            <nav class="menu">
+                <ul>
+                    <li><a href="#portfolio">포트폴리오</a></li>
+                    <li><a href="#contact">콘택트</a></li>
+                    <li><a href="#biography">바이오그라피</a></li>
+                </ul>
+            </nav>
+        </aside>
+        <main class="main-content">
+            <div class="portfolio" id="portfolio">
+                <div class="item" onclick="showImage('art1.jpg')">
+                    <img src="art1_thumb.jpg" alt="작품 1">
+                </div>
+                <div class="item" onclick="showImage('art2.jpg')">
+                    <img src="art2_thumb.jpg" alt="작품 2">
+                </div>
+                <div class="item" onclick="showImage('art3.jpg')">
+                    <img src="art3_thumb.jpg" alt="작품 3">
+                </div>
+                <div class="item" onclick="showImage('art4.jpg')">
+                    <img src="art4_thumb.jpg" alt="작품 4">
+                </div>
+                <!-- 추가 작품을 여기에 추가 -->
+            </div>
+            <div class="overlay" id="overlay" onclick="hideImage()">
+                <img id="expandedImage" src="" alt="확대된 작품">
+            </div>
+        </main>
+    </div>
+    <script src="script.js"></script>
 </body>
 </html>

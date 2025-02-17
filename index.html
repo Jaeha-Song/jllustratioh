@@ -105,7 +105,7 @@
 
         /* ✅ 모달 창 스타일 */
         .modal {
-            display: flex;
+            display: none;
             position: fixed;
             z-index: 1000;
             left: 0;
@@ -118,13 +118,12 @@
             flex-direction: column;
             text-align: center;
             opacity: 0;
-            visibility: hidden;
-            transition: opacity 0.4s ease-in-out, visibility 0.4s ease-in-out;
+            transition: opacity 0.4s ease-in-out;
         }
 
         .modal.show {
+            display: flex;
             opacity: 1;
-            visibility: visible;
         }
 
         .modal img {
@@ -193,19 +192,10 @@
         <p>이곳에 갤러리 소개 및 설명을 추가할 수 있습니다.</p>
         
         <div class="gallery">
-            <!-- ✅ 4 × 3 배열로 이미지 12개 추가 -->
             <img src="https://via.placeholder.com/300" alt="Sunset Over the City" onclick="openModal(0)">
             <img src="https://via.placeholder.com/300" alt="Mysterious Forest" onclick="openModal(1)">
             <img src="https://via.placeholder.com/300" alt="Ocean Breeze" onclick="openModal(2)">
             <img src="https://via.placeholder.com/300" alt="Vintage Street" onclick="openModal(3)">
-            <img src="https://via.placeholder.com/300" alt="Golden Hour" onclick="openModal(4)">
-            <img src="https://via.placeholder.com/300" alt="Deep Woods" onclick="openModal(5)">
-            <img src="https://via.placeholder.com/300" alt="Starry Night" onclick="openModal(6)">
-            <img src="https://via.placeholder.com/300" alt="City Lights" onclick="openModal(7)">
-            <img src="https://via.placeholder.com/300" alt="Desert Mirage" onclick="openModal(8)">
-            <img src="https://via.placeholder.com/300" alt="Winter Wonderland" onclick="openModal(9)">
-            <img src="https://via.placeholder.com/300" alt="Rainy Evening" onclick="openModal(10)">
-            <img src="https://via.placeholder.com/300" alt="Autumn Vibes" onclick="openModal(11)">
         </div>
     </div>
 
@@ -226,22 +216,35 @@
         &copy; 2025 Laurent Durieux. All rights reserved.
     </footer>
 
+    <!-- ✅ 모달 창 -->
+    <div class="modal" id="imageModal" onclick="closeModal()">
+        <span class="arrow left" onclick="prevImage(event)">&#9664;</span>
+        <img id="modalImg">
+        <div class="title" id="modalTitle"></div>
+        <span class="arrow right" onclick="nextImage(event)">&#9654;</span>
+    </div>
+
     <script>
         const images = document.querySelectorAll(".gallery img");
         let currentIndex = 0;
 
+        function showSection(sectionId) {
+            document.querySelectorAll(".container").forEach(section => section.style.display = "none");
+            document.getElementById(sectionId).style.display = "block";
+
+            document.querySelectorAll("nav a").forEach(link => link.classList.remove("active"));
+            event.target.classList.add("active");
+        }
+
         function openModal(index) {
             const modal = document.getElementById("imageModal");
             currentIndex = index;
-            modal.style.display = "flex";
-            setTimeout(() => modal.classList.add("show"), 10);
+            modal.classList.add("show");
             updateModal();
         }
 
         function closeModal() {
-            const modal = document.getElementById("imageModal");
-            modal.classList.remove("show");
-            setTimeout(() => modal.style.display = "none", 400);
+            document.getElementById("imageModal").classList.remove("show");
         }
 
         function prevImage(event) {

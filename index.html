@@ -3,35 +3,29 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" type="text/css" href="styles.css">
-    <title>사진 갤러리</title>
+    <title>사진을 보여주는 홈페이지</title>
+    <link rel="stylesheet" href="styles.css">
 </head>
 <body>
     <div class="container">
-        <div class="sidebar">
-            <h2>목록</h2>
-            <ul>
-                <li><a href="#photo1">사진 1</a></li>
-                <li><a href="#photo2">사진 2</a></li>
-                <li><a href="#photo3">사진 3</a></li>
-                <li><a href="#photo4">사진 4</a></li>
-            </ul>
+        <div class="left-panel">
+            <div class="top-section">
+                <img src="your-image.jpg" alt="Sample Image" class="sample-image">
+            </div>
+            <div class="bottom-section">
+                <ul class="menu">
+                    <li class="active" data-category="portfolio">포트폴리오</li>
+                    <li data-category="blog">블로그</li>
+                    <li data-category="contact">연락</li>
+                    <li data-category="about">소개</li>
+                    <li data-category="shop">숍</li>
+                </ul>
+            </div>
         </div>
-        <div class="gallery">
-            <h2>사진 갤러리</h2>
-            <div class="photo" id="photo1">
-                <img src="https://via.placeholder.com/300" alt="사진 1">
-            </div>
-            <div class="photo" id="photo2">
-                <img src="https://via.placeholder.com/300" alt="사진 2">
-            </div>
-            <div class="photo" id="photo3">
-                <img src="https://via.placeholder.com/300" alt="사진 3">
-            </div>
-            <div class="photo" id="photo4">
-                <img src="https://via.placeholder.com/300" alt="사진 4">
-            </div>
+        <div class="right-panel">
+            <div class="gallery" id="gallery"></div>
         </div>
     </div>
+    <script src="script.js"></script>
 </body>
 </html>

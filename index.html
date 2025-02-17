@@ -30,8 +30,8 @@
         }
 
         .logo {
-            font-size: 28px; /* 🔹 제목 스타일 */
-            font-family: "Georgia", serif; /* 제목 폰트 설정 */
+            font-size: 28px;
+            font-family: "Georgia", serif;
             font-weight: bold;
         }
 
@@ -52,9 +52,8 @@
             cursor: pointer;
         }
 
-        /* 🔥 클릭된 메뉴 활성화 색상 */
         nav a.active {
-            color: orange; /* 👉 원하는 색상으로 변경 가능 */
+            color: orange;
         }
 
         /* ✅ 컨테이너 설정 */
@@ -65,17 +64,17 @@
             display: none; /* 기본적으로 숨김 */
         }
 
-        /* ✅ 제목 및 소제목 스타일 */
+        /* ✅ 제목 및 본문 스타일 */
         h2 {
-            font-family: "Georgia", serif; /* 🔹 제목 폰트 설정 */
-            font-size: 26px; /* 🔹 제목 크기 */
+            font-family: "Georgia", serif;
+            font-size: 26px;
             font-weight: bold;
             color: #333;
         }
 
         h3 {
-            font-family: "Verdana", sans-serif; /* 🔹 소제목 폰트 설정 */
-            font-size: 22px; /* 🔹 소제목 크기 */
+            font-family: "Verdana", sans-serif;
+            font-size: 22px;
             font-weight: bold;
             color: #555;
         }
@@ -121,14 +120,6 @@
             align-items: center;
             flex-direction: column;
             text-align: center;
-            opacity: 0;
-            transform: scale(0);
-            transition: transform 0.4s ease-out, opacity 0.4s ease-out;
-        }
-
-        .modal.show {
-            opacity: 1;
-            transform: scale(1);
         }
 
         .modal img {
@@ -143,15 +134,6 @@
             font-size: 20px;
             color: white;
             font-weight: bold;
-        }
-
-        .modal .close {
-            position: absolute;
-            top: 20px;
-            right: 30px;
-            font-size: 30px;
-            color: white;
-            cursor: pointer;
         }
     </style>
 </head>
@@ -197,9 +179,8 @@
     </footer>
 
     <!-- 모달 창 -->
-    <div class="modal" id="imageModal">
-        <span class="close" onclick="closeModal()">&times;</span>
-        <img id="modalImg" onclick="closeModal()">
+    <div class="modal" id="imageModal" onclick="closeModal()">
+        <img id="modalImg">
         <div class="title" id="modalTitle"></div>
     </div>
 

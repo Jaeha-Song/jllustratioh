@@ -86,7 +86,7 @@
         /* ✅ 4 × 3 배열을 위한 갤러리 스타일 */
         .gallery {
             display: grid;
-            grid-template-columns: repeat(4, 1fr); /* 4개씩 한 줄에 표시 */
+            grid-template-columns: repeat(4, 1fr);
             gap: 15px;
             margin-top: 20px;
         }
@@ -209,13 +209,22 @@
         </div>
     </div>
 
-    <!-- 모달 창 -->
-    <div class="modal" id="imageModal" onclick="closeModal()">
-        <span class="arrow left" onclick="prevImage(event)">&#9664;</span>
-        <img id="modalImg">
-        <div class="title" id="modalTitle"></div>
-        <span class="arrow right" onclick="nextImage(event)">&#9654;</span>
+    <!-- ✅ SHOP 섹션 -->
+    <div class="container" id="shop">
+        <h2>Shop</h2>
+        <p>🚧 여기에 상점 관련 콘텐츠를 추가할 수 있습니다.</p>
     </div>
+
+    <!-- ✅ CONTACT 섹션 -->
+    <div class="container" id="contact">
+        <h2>Contact</h2>
+        <p>📌 여기에 연락처 및 문의 정보를 추가할 수 있습니다.</p>
+    </div>
+
+    <!-- ✅ 푸터 복구 -->
+    <footer>
+        &copy; 2025 Laurent Durieux. All rights reserved.
+    </footer>
 
     <script>
         const images = document.querySelectorAll(".gallery img");
@@ -235,16 +244,16 @@
             setTimeout(() => modal.style.display = "none", 400);
         }
 
-        function updateModal() {
-            const modalImg = document.getElementById("modalImg");
-            const modalTitle = document.getElementById("modalTitle");
+        function prevImage(event) {
+            event.stopPropagation();
+            currentIndex = (currentIndex - 1 + images.length) % images.length;
+            updateModal();
+        }
 
-            modalTitle.style.opacity = "0";
-            setTimeout(() => {
-                modalImg.src = images[currentIndex].src;
-                modalTitle.textContent = images[currentIndex].alt;
-                modalTitle.style.opacity = "1";
-            }, 100);
+        function nextImage(event) {
+            event.stopPropagation();
+            currentIndex = (currentIndex + 1) % images.length;
+            updateModal();
         }
     </script>
 

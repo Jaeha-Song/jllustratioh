@@ -3,30 +3,121 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>사진을 보여주는 홈페이지</title>
-    <link rel="stylesheet" href="styles.css">
+    <title>SONG JAEHA</title>
     <link rel="icon" href="favicon.ico" type="image/x-icon">
+    <style>
+        body {
+            margin: 0;
+            background-color: white; /* 배경색 변경 가능 */
+            font-family: Arial, sans-serif;
+        }
+        .container {
+            display: flex;
+            margin: 100px 50px 0 50px;
+        }
+        .left-panel {
+            width: 300px;
+            margin-right: 50px;
+            display: flex;
+            flex-direction: column;
+        }
+        .top-image {
+            flex: 1;
+            background-color: #f0f0f0; /* 이미지 영역 */
+            margin-bottom: 50px;
+        }
+        .menu {
+            display: flex;
+            flex-direction: column;
+        }
+        .menu-item {
+            padding: 10px;
+            cursor: pointer;
+        }
+        .menu-item.selected {
+            color: blue; /* 선택된 메뉴 색상 */
+        }
+        .right-panel {
+            flex: 1;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 50px; /* 이미지 간격 */
+        }
+        .image-item {
+            width: 300px; /* 이미지 고정 폭 */
+            height: 200px; /* 이미지 높이 */
+            background-color: #e0e0e0; /* 더미 이미지 */
+            cursor: pointer;
+            position: relative;
+        }
+        .image-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        .bio {
+            margin-top: 50px;
+        }
+        .expanded-image {
+            position: absolute;
+            top: 0;
+            left: 0;
+            z-index: 10;
+            display: none;
+            width: 100%;
+            height: auto;
+        }
+    </style>
 </head>
 <body>
     <div class="container">
         <div class="left-panel">
-            <div class="top-section">
-                <img src="your-image.jpg" alt="Sample Image" class="sample-image">
-            </div>
-            <div class="bottom-section">
-                <ul class="menu">
-                    <li class="active" data-category="portfolio">포트폴리오</li>
-                    <li data-category="blog">블로그</li>
-                    <li data-category="contact">연락</li>
-                    <li data-category="about">소개</li>
-                    <li data-category="shop">숍</li>
-                </ul>
+            <div class="top-image"></div>
+            <div class="menu">
+                <div class="menu-item selected" onclick="showGallery('portfolio')">포트폴리오</div>
+                <div class="menu-item" onclick="showGallery('blog')">블로그</div>
+                <div class="menu-item" onclick="showGallery('contact')">콘텍트</div>
+                <div class="menu-item" onclick="showGallery('bio')">바이오</div>
+                <div class="menu-item" onclick="showGallery('shop')">숍</div>
+                <div class="bio">작가의 소개입니다</div>
             </div>
         </div>
-        <div class="right-panel">
-            <div class="gallery" id="gallery"></div>
+        <div class="right-panel" id="gallery">
+            <div class="image-item" onclick="expandImage(this)">
+                <img src="image1.jpg" alt="Image 1">
+                <img class="expanded-image" src="image1.jpg" alt="Expanded Image 1">
+            </div>
+            <div class="image-item" onclick="expandImage(this)">
+                <img src="image2.jpg" alt="Image 2">
+                <img class="expanded-image" src="image2.jpg" alt="Expanded Image 2">
+            </div>
+            <div class="image-item" onclick="expandImage(this)">
+                <img src="image3.jpg" alt="Image 3">
+                <img class="expanded-image" src="image3.jpg" alt="Expanded Image 3">
+            </div>
+            <!-- 추가 이미지 항목 -->
         </div>
     </div>
-    <script src="script.js"></script>
+
+    <script>
+        function showGallery(menu) {
+            const menuItems = document.querySelectorAll('.menu-item');
+            menuItems.forEach(item => {
+                item.classList.remove('selected');
+            });
+            document.querySelector(`.menu-item:contains(${menu})`).classList.add('selected');
+
+            // 여기서 각 메뉴에 맞는 갤러리를 보여주는 로직을 추가할 수 있습니다.
+        }
+
+        function expandImage(imageItem) {
+            const expandedImage = imageItem.querySelector('.expanded-image');
+            expandedImage.style.display = 'block';
+            expandedImage.style.position = 'absolute';
+            expandedImage.style.zIndex = '10';
+            expandedImage.style.left = '300px'; // 좌측 메뉴가 사라지도록 위치 조정
+            expandedImage.style.top = '0';
+        }
+    </script>
 </body>
 </html>

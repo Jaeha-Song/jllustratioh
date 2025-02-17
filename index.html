@@ -16,7 +16,7 @@
             box-sizing: border-box;
         }
 
-        /* ✅ 전체 배경색을 흰색으로 통일 */
+        /* ✅ 전체 배경을 흰색으로 통일 */
         body {
             font-family: "Arial", sans-serif;
             background-color: #ffffff;
@@ -41,8 +41,8 @@
             justify-content: center;
             gap: 20px;
             margin-top: 10px;
-            background-color: white; /* 배경을 흰색으로 유지 */
-            padding-bottom: 10px; /* 기존 라인 대신 여백 추가 */
+            background-color: white;
+            padding-bottom: 10px;
         }
 
         nav a {
@@ -64,7 +64,7 @@
             margin: auto;
             padding: 20px;
             display: none; /* 기본적으로 숨김 */
-            background-color: white; /* 배경색 흰색 유지 */
+            background-color: white;
         }
 
         /* ✅ 제목 및 본문 스타일 */
@@ -109,9 +109,9 @@
             transform: scale(1.05);
         }
 
-        /* ✅ 모달 창 스타일 */
+        /* ✅ 모달 창 스타일 (투명도 변화 효과 추가) */
         .modal {
-            display: none;
+            display: flex;
             position: fixed;
             z-index: 1000;
             left: 0;
@@ -123,6 +123,14 @@
             align-items: center;
             flex-direction: column;
             text-align: center;
+            opacity: 0;
+            visibility: hidden;
+            transition: opacity 0.4s ease-in-out, visibility 0.4s ease-in-out;
+        }
+
+        .modal.show {
+            opacity: 1;
+            visibility: visible;
         }
 
         .modal img {
@@ -130,6 +138,7 @@
             max-height: 80%;
             border-radius: 10px;
             cursor: pointer;
+            transition: opacity 0.4s ease-in-out;
         }
 
         .modal .title {
@@ -202,12 +211,21 @@
             const modalTitle = document.getElementById("modalTitle");
 
             modal.style.display = "flex";
+            setTimeout(() => {
+                modal.classList.add("show");
+            }, 10); // 약간의 지연 후 효과 적용
+
             modalImg.src = imgElement.src;
             modalTitle.textContent = title;
         }
 
         function closeModal() {
-            document.getElementById("imageModal").style.display = "none";
+            const modal = document.getElementById("imageModal");
+
+            modal.classList.remove("show");
+            setTimeout(() => {
+                modal.style.display = "none";
+            }, 400); // 0.4초 후 완전히 숨김
         }
     </script>
 

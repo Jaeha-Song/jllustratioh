@@ -83,10 +83,10 @@
             line-height: 1.6;
         }
 
-        /* ✅ 3줄 레이아웃을 위한 갤러리 스타일 */
+        /* ✅ 4 × 3 배열을 위한 갤러리 스타일 */
         .gallery {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            grid-template-columns: repeat(4, 1fr); /* 4개씩 한 줄에 표시 */
             gap: 15px;
             margin-top: 20px;
         }
@@ -134,7 +134,6 @@
             cursor: pointer;
         }
 
-        /* ✅ 제목 오퍼시티 효과 */
         .modal .title {
             margin-top: 10px;
             font-size: 20px;
@@ -148,7 +147,6 @@
             opacity: 1;
         }
 
-        /* ✅ 좌우 화살표 스타일 */
         .arrow {
             position: absolute;
             top: 50%;
@@ -188,25 +186,39 @@
         </nav>
     </header>
 
-    <!-- GALLERY 섹션 -->
+    <!-- ✅ GALLERY 섹션 -->
     <div class="container" id="gallery" style="display: block;">
         <h2>Featured Artwork</h2>
         <h3>Special Collection</h3>
         <p>이곳에 갤러리 소개 및 설명을 추가할 수 있습니다.</p>
         
         <div class="gallery">
+            <!-- ✅ 4 × 3 배열로 이미지 12개 추가 -->
             <img src="https://via.placeholder.com/300" alt="Sunset Over the City" onclick="openModal(0)">
             <img src="https://via.placeholder.com/300" alt="Mysterious Forest" onclick="openModal(1)">
             <img src="https://via.placeholder.com/300" alt="Ocean Breeze" onclick="openModal(2)">
+            <img src="https://via.placeholder.com/300" alt="Vintage Street" onclick="openModal(3)">
+            <img src="https://via.placeholder.com/300" alt="Golden Hour" onclick="openModal(4)">
+            <img src="https://via.placeholder.com/300" alt="Deep Woods" onclick="openModal(5)">
+            <img src="https://via.placeholder.com/300" alt="Starry Night" onclick="openModal(6)">
+            <img src="https://via.placeholder.com/300" alt="City Lights" onclick="openModal(7)">
+            <img src="https://via.placeholder.com/300" alt="Desert Mirage" onclick="openModal(8)">
+            <img src="https://via.placeholder.com/300" alt="Winter Wonderland" onclick="openModal(9)">
+            <img src="https://via.placeholder.com/300" alt="Rainy Evening" onclick="openModal(10)">
+            <img src="https://via.placeholder.com/300" alt="Autumn Vibes" onclick="openModal(11)">
         </div>
     </div>
 
-    <!-- 모달 창 -->
-    <div class="modal" id="imageModal" onclick="closeModal()">
-        <span class="arrow left" onclick="prevImage(event)">&#9664;</span>
-        <img id="modalImg">
-        <div class="title" id="modalTitle"></div>
-        <span class="arrow right" onclick="nextImage(event)">&#9654;</span>
+    <!-- ✅ SHOP 섹션 -->
+    <div class="container" id="shop">
+        <h2>Shop</h2>
+        <p>🚧 여기에 상점 관련 콘텐츠를 추가할 수 있습니다.</p>
+    </div>
+
+    <!-- ✅ CONTACT 섹션 -->
+    <div class="container" id="contact">
+        <h2>Contact</h2>
+        <p>📌 여기에 연락처 및 문의 정보를 추가할 수 있습니다.</p>
     </div>
 
     <footer>
@@ -214,53 +226,12 @@
     </footer>
 
     <script>
-        const images = document.querySelectorAll(".gallery img");
-        let currentIndex = 0;
-
         function showSection(sectionId) {
             document.querySelectorAll(".container").forEach(section => section.style.display = "none");
             document.getElementById(sectionId).style.display = "block";
 
             document.querySelectorAll("nav a").forEach(link => link.classList.remove("active"));
             event.target.classList.add("active");
-        }
-
-        function openModal(index) {
-            const modal = document.getElementById("imageModal");
-            currentIndex = index;
-            modal.style.display = "flex";
-            setTimeout(() => modal.classList.add("show"), 10);
-            updateModal();
-        }
-
-        function closeModal() {
-            const modal = document.getElementById("imageModal");
-            modal.classList.remove("show");
-            setTimeout(() => modal.style.display = "none", 400);
-        }
-
-        function updateModal() {
-            const modalImg = document.getElementById("modalImg");
-            const modalTitle = document.getElementById("modalTitle");
-
-            modalTitle.style.opacity = "0"; // 제목 오퍼시티 초기화
-            setTimeout(() => {
-                modalImg.src = images[currentIndex].src;
-                modalTitle.textContent = images[currentIndex].alt;
-                modalTitle.style.opacity = "1"; // 부드럽게 나타나도록 설정
-            }, 100);
-        }
-
-        function prevImage(event) {
-            event.stopPropagation();
-            currentIndex = (currentIndex - 1 + images.length) % images.length;
-            updateModal();
-        }
-
-        function nextImage(event) {
-            event.stopPropagation();
-            currentIndex = (currentIndex + 1) % images.length;
-            updateModal();
         }
     </script>
 

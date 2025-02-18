@@ -11,8 +11,20 @@
     <style>
         /* ✅ 기본 폰트 설정 */
         @font-face {
-            font-family: 'MyFont';
+            font-family: 'Avenir-lig';
             src: url('https://github.com/Jaeha-Song/jllustratioh/raw/refs/heads/main/AvenirLTStd-Light.otf') format('otf');
+            font-weight: normal;
+            font-style: normal;
+        }
+        @font-face {
+            font-family: 'Avenir-med';
+            src: url('https://github.com/Jaeha-Song/jllustratioh/raw/refs/heads/main/AvenirLTStd-Medium.otf') format('otf');
+            font-weight: normal;
+            font-style: normal;
+        }
+        @font-face {
+            font-family: 'Avenir-blk';
+            src: url('https://github.com/Jaeha-Song/jllustratioh/raw/refs/heads/main/AvenirLTStd-Black.otf') format('otf');
             font-weight: normal;
             font-style: normal;
         }
@@ -25,7 +37,16 @@
         }
 
         body {
-            font-family: "Myfont", sans-serif;
+            font-family: "Avenir-lig", sans-serif;
+            background-color: #ffffff;
+        }
+        /* ✅ 폰트 설정 */
+        .Avenir-med {
+            font-family: "Avenir-med", sans-serif;
+            background-color: #ffffff;
+        }
+        .Avenir-blk {
+            font-family: "Avenir-blk", sans-serif;
             background-color: #ffffff;
         }
 
@@ -199,15 +220,15 @@
     <header>
         <img src="https://raw.githubusercontent.com/Jaeha-Song/jllustratioh/refs/heads/main/jllustratioh%20logo.png"alt="logo" width="120" height="120" />
         <nav>
-            <a onclick="showSection('gallery')" class="active">Gallery</a>
-            <a onclick="showSection('shop')">Shop</a>
-            <a onclick="showSection('contact')">Contact</a>
+            <a onclick="showSection('gallery')" class="active"><h1>Gallery</h1></a>
+            <a onclick="showSection('shop')"><h1>Shop</h1></a>
+            <a onclick="showSection('contact')"><h1>Contact</h1></a>
         </nav>
     </header>
 
     <!-- GALLERY 섹션 -->
     <div class="container" id="gallery" style="display: block;">
-        <h2 class="centered spaced">Gallery</h2>
+        <h2 class="Avenir-med centered spaced">Gallery</h2>
         <p class="centered">we hear color, taste sound, and see warmth.</p>
         
         <div class="gallery">
@@ -228,13 +249,13 @@
 
         <!-- ✅ SHOP 섹션 -->
     <div class="container" id="shop">
-        <h2 class="centered spaced">Shop</h2>
+        <h2 class="Avenir-med centered spaced">Shop</h2>
         <p class="centered">comming soon :)</p>
     </div>
 
     <!-- ✅ CONTACT 섹션 -->
     <div class="container" id="contact">
-        <h2 class="centered spaced">Contact</h2>
+        <h2 class="Avenir-med centered spaced">Contact</h2>
         <p class="centered">mail : jaehasong86@gmail.com</p></p>
         <p class="centered">instagram : @jllustratioh</p></p>
     </div>

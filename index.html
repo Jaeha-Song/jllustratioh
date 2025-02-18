@@ -11,20 +11,20 @@
     <style>
         /* ✅ 기본 폰트 설정 */
         @font-face {
-            font-family: 'Avenir-lig';
+            font-family: 'avenir-light';
             src: url('https://github.com/Jaeha-Song/jllustratioh/raw/refs/heads/main/AvenirLTStd-Light.otf') format('otf');
             font-weight: normal;
             font-style: normal;
         }
         @font-face {
-            font-family: 'Avenir-med';
-            src: url('https://github.com/Jaeha-Song/jllustratioh/raw/refs/heads/main/AvenirLTStd-Medium.otf') format('otf');
+            font-family: '본문용';
+            src: url('폰트 주소') format('otf');
             font-weight: normal;
             font-style: normal;
         }
         @font-face {
-            font-family: 'Avenir-blk';
-            src: url('https://github.com/Jaeha-Song/jllustratioh/raw/refs/heads/main/AvenirLTStd-Black.otf') format('otf');
+            font-family: '주석용';
+            src: url('폰트 주소') format('otf');
             font-weight: normal;
             font-style: normal;
         }
@@ -41,11 +41,11 @@
             background-color: #ffffff;
         }
         /* ✅ 폰트 설정 */
-        .Avenir-med {
+        .본문용 {
             font-family: "Avenir-med", sans-serif;
             background-color: #ffffff;
         }
-        .Avenir-blk {
+        .주석용 {
             font-family: "Avenir-blk", sans-serif;
             background-color: #ffffff;
         }
@@ -98,26 +98,19 @@
         }
 
         h1 {
-            font-size: 26px;
-            font-weight: bold;
+            font-size: 24px;
             color: #333;
+            line-height: 1.6;
         }
         
         h2 {
-            font-size: 26px;
-            font-weight: bold;
-            color: #333;
-        }
-
-        h3 {
-            font-size: 22px;
-            font-weight: bold;
-            color: #555;
+            font-size: 16px;
+            color: #ffa500;
         }
 
         p {
-            font-size: 16px;
-            color: #444;
+            font-size: 12px;
+            color: #999;
             line-height: 1.6;
         }
 
@@ -224,15 +217,15 @@
     <header>
         <img src="https://raw.githubusercontent.com/Jaeha-Song/jllustratioh/refs/heads/main/jllustratioh%20logo.png"alt="logo" width="120" height="120" />
         <nav>
-            <a onclick="showSection('gallery')" class="active"><h1>Gallery</h1></a>
-            <a onclick="showSection('shop')"><h1>Shop</h1></a>
-            <a onclick="showSection('contact')"><h1>Contact</h1></a>
+            <a onclick="showSection('gallery')" class="active"><h2>Gallery</h2></a>
+            <a onclick="showSection('shop')"><h2>Shop</h2></a>
+            <a onclick="showSection('contact')"><h2>Contact</h2></a>
         </nav>
     </header>
 
     <!-- GALLERY 섹션 -->
     <div class="container" id="gallery" style="display: block;">
-        <h2 class="Avenir-med centered spaced">Gallery</h2>
+        <h1 class="centered spaced">Gallery</h1>
         <p class="centered">we hear color, taste sound, and see warmth.</p>
         
         <div class="gallery">
@@ -253,13 +246,13 @@
 
         <!-- ✅ SHOP 섹션 -->
     <div class="container" id="shop">
-        <h2 class="Avenir-med centered spaced">Shop</h2>
+        <h1 class="centered spaced">Shop</h1>
         <p class="centered">comming soon :)</p>
     </div>
 
     <!-- ✅ CONTACT 섹션 -->
     <div class="container" id="contact">
-        <h2 class="Avenir-med centered spaced">Contact</h2>
+        <h1 class="centered spaced">Contact</h1>
         <p class="centered">mail : jaehasong86@gmail.com</p></p>
         <p class="centered">instagram : @jllustratioh</p></p>
     </div>

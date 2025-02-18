@@ -38,14 +38,17 @@
           font-weight: 400;
           font-style: normal;
         }
-
         /* ✅ 헤더 스타일 */
         header {
             background-color: white;
             padding: 20px;
             text-align: center;
         }
-
+        /* ✅ 여백 설정 */
+        .box {
+            padding: 20px;
+            margin: 10px;
+        }
         /* ✅ 내비게이션 스타일 */
         nav {
             display: flex;
@@ -226,7 +229,7 @@
         <h1 class="centered spaced">Gallery</h1>
         <p class="centered">we hear color, taste sound, and see warmth.</p>
         
-        <div class="gallery">
+        <div class="gallery box">
             <img src="https://via.placeholder.com/300" alt="Sunset Over the City" onclick="openModal(0)">
             <img src="https://via.placeholder.com/300" alt="Mysterious Forest" onclick="openModal(1)">
             <img src="https://via.placeholder.com/300" alt="Ocean Breeze" onclick="openModal(2)">

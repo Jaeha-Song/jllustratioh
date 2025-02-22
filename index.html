@@ -32,18 +32,21 @@
             background-color: #ffffff;
         }
         /* ✅ 폰트 설정 */
-        .textalign {
+        .textalignleft {
             text-algin: left;
         }
+        .textaligncenter {
+            text-align: center;
+        }
         .poppins-extralight {
-          font-family: "Poppins", serif;
-          font-weight: 200;
-          font-style: normal;
+            font-family: "Poppins", serif;
+            font-weight: 200;
+            font-style: normal;
         }      
         .poppins-regular {
-          font-family: "Poppins", serif;
-          font-weight: 400;
-          font-style: normal;
+            font-family: "Poppins", serif;
+            font-weight: 400;
+            font-style: normal;
         }
         /* ✅ 헤더 스타일 */
         header {
@@ -102,7 +105,7 @@
             line-height: 1.5; /* 줄 간격을 1.5배로 설정 */
         }
         .centered {
-            text-align: center;
+            margin: 0 auto;
         }
 
         h1 {
@@ -232,8 +235,8 @@
 
     <!-- GALLERY 섹션 -->
     <div class="container divider" id="gallery" style="display: block;">
-        <h1 class="centered spaced">Gallery</h1>
-        <p class="centered">I hear color, taste sound, and see warmth.</p>
+        <h1 class="textaligncenter spaced">Gallery</h1>
+        <p class=textaligncenter">I hear color, taste sound, and see warmth.</p>
         
         <div class="gallery box">
             <img src="https://raw.githubusercontent.com/Jaeha-Song/jllustratioh/main/images/Accompany.JPG" alt="Accompany" onclick="openModal(0)">
@@ -266,12 +269,12 @@
 
         <!-- ✅ About 섹션 -->
     <div class="container divider" id="shop">
-        <h1 class="centered spaced">About</h1>
+        <h1 class="textaligncenter spaced">About</h1>
         <div class="centered box">
             <div>
                 <img src="https://raw.githubusercontent.com/Jaeha-Song/jllustratioh/main/IMG_5492.jpeg" alt="profile" width="150" style="border-radius: 4px;">
             </div>
-            <div class="leftalign box">
+            <div class="leftalignleft box">
                 <p>안녕하세요, 서울에서 활동하는</p>
                 <p>일러스트레이터 송재하입니다.</p>
                 <p>저는 일상의 따뜻한 순간들을 포착해,</p>
@@ -306,8 +309,8 @@
 
     <!-- ✅ CONTACT 섹션 -->
     <div class="container divider" id="contact">
-        <h1 class="centered spaced">Contact</h1>
-        <div class="centered box">
+        <h1 class="textaligncenter spaced">Contact</h1>
+        <div class="textaligncenter centered box">
             <a href="mailto:jaehasong86@gmail.com">
                 <p>mail : jaehasong86@gmail.com</p>
             </a>
@@ -320,7 +323,7 @@
 
     <footer>
         <div class="box">
-            <p class="centered"> &copy; 2025 Song jaeha. All rights reserved.</p>
+            <p class="textaligncenter"> &copy; 2025 Song jaeha. All rights reserved.</p>
         </div>
     </footer>
     

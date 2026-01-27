@@ -1,97 +1,78 @@
 <!DOCTYPE html>
 <html lang="ko">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>JAEHA'S ILLUSTRATION</title>
-    
-    <link rel="icon" href="favicon.ico" type="image/x-icon">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&family=Poppins:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
-    
-    <style>        
-        * { margin:0; padding:0; box-sizing:border-box; }
-        body { font-family:"Poppins", serif; font-weight:200; background:#fff; }
-        a { text-decoration:none; color:inherit; }
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>JAEHA'S ILLUSTRATION</title>
 
-        header { background:white; padding:20px; text-align:center; }
-        nav { display:flex; justify-content:center; gap:20px; background:white; }
-        nav a.active { color:#ffa500; }
+<link rel="icon" href="favicon.ico" type="image/x-icon">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
 
-        .container { max-width:1200px; margin:auto; padding:20px; display:none; background:white; }
-        .box { padding:20px; margin:10px; }
-        .divider { border-top:1px solid #ccc; margin-bottom:10px; }
+<style>
+* {margin:0; padding:0; box-sizing:border-box;}
+body {font-family:"Poppins", serif; font-weight:200; background:#fff;}
+a {text-decoration:none;}
 
-        h1 { font-weight:400; font-size:24px; color:#666; line-height:1.6; text-align:center; }
-        p { font-weight:200; font-size:12px; color:#999; line-height:1.6; text-align:center; }
+/* 헤더 */
+header {background:#fff; padding:20px; text-align:center;}
+nav {display:flex; justify-content:center; gap:20px; background:white;}
+nav a {text-decoration:none; color:black; cursor:pointer; transition:color 0.3s;}
+nav a.active {color:#ffa500;}
 
-        /* ===== 갤러리 수정 ===== */
-        .gallery {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 15px;
-            margin-top: 20px;
-        }
+/* 갤러리 */
+.gallery {
+    display:grid;
+    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+    gap:15px;
+    margin-top:20px;
+}
 
-        /* 갤러리 셀 박스 */
-        .gallery-item {
-            width: 100%;
-            height: 250px;     /* 균일 높이 */
-            overflow: hidden;  /* 이미지 넘치면 숨김 */
-            border-radius: 4px;
-        }
+.gallery-item {
+    width:100%;
+    height:250px; 
+    overflow:hidden;
+    border-radius:4px;
+}
 
-        .gallery-item img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover; /* 셀 안에서 비율 유지하며 잘림 */
-            cursor: pointer;
-            transition: transform 0.3s;
-        }
+.gallery-item img {
+    width:100%;
+    height:100%;
+    object-fit:cover;
+    cursor:pointer;
+    transition: transform 0.3s;
+}
 
-        .gallery-item img:hover { transform: scale(1.05); }
+.gallery-item img:hover {transform:scale(1.05);}
 
-        /* ===== 모달 ===== */
-        .modal {
-            display:flex;
-            position:fixed;
-            z-index:1000;
-            left:0; top:0;
-            width:100%; height:100%;
-            background:rgba(0,0,0,0.8);
-            justify-content:center; align-items:center;
-            flex-direction:column;
-            text-align:center;
-            opacity:0; visibility:hidden;
-            transition:opacity 0.4s, visibility 0.4s;
-        }
+/* 모달 */
+.modal {
+    display:flex;
+    position:fixed;
+    z-index:1000;
+    left:0; top:0;
+    width:100%; height:100%;
+    background:rgba(0,0,0,0.8);
+    justify-content:center; align-items:center;
+    flex-direction:column;
+    text-align:center;
+    opacity:0; visibility:hidden;
+    transition:opacity 0.4s, visibility 0.4s;
+}
 
-        .modal.show { opacity:1; visibility:visible; }
-        .modal img { max-width:90%; max-height:80%; border-radius:4px; cursor:pointer; }
-        .modal .title { margin-top:10px; font-size:14px; color:white; font-weight:light; }
-
-        .arrow {
-            position:absolute;
-            top:50%;
-            transform:translateY(-50%);
-            font-size:20px;
-            color:white;
-            cursor:pointer;
-            user-select:none;
-        }
-
-        .arrow.left { left:40px; }
-        .arrow.right { right:40px; }
-
-        footer { text-align:center; padding:20px; background:white; font-size:14px; color:#777; }
-    </style>
+.modal.show {opacity:1; visibility:visible;}
+.modal img {max-width:90%; max-height:80%; border-radius:4px; cursor:pointer;}
+.modal .title {margin-top:10px; font-size:14px; color:white; font-weight:light;}
+.arrow {position:absolute; top:50%; transform:translateY(-50%); font-size:20px; color:white; cursor:pointer; user-select:none;}
+.arrow.left {left:40px;} .arrow.right {right:40px;}
+</style>
 </head>
 <body>
 
 <header>
     <a href="index.html">
-        <img src="https://raw.githubusercontent.com/Jaeha-Song/jllustratioh/refs/heads/main/jllustratioh%20logo.png" alt="logo" width="120" height="120" />
+        <img src="https://raw.githubusercontent.com/Jaeha-Song/jllustratioh/refs/heads/main/jllustratioh%20logo.png" alt="logo" width="120" height="120">
     </a>
     <nav>
         <a onclick="showSection('gallery')" class="active">Gallery</a>
@@ -100,12 +81,10 @@
     </nav>
 </header>
 
-<div class="container divider" id="gallery" style="display:block;">
-    <h1>Gallery</h1>
-    <div class="box">
-        <p>I hear color, taste sound, and see warmth.</p>
-    </div>
+<div class="container" id="gallery" style="display:block;">
+    <h1 class="textaligncenter">Gallery</h1>
     <div class="gallery box">
+        <!-- gallery-item 안에 이미지 -->
         <div class="gallery-item"><img src="https://raw.githubusercontent.com/Jaeha-Song/jllustratioh/main/images/Accompany.JPG" alt="Accompany" onclick="openModal(0)"></div>
         <div class="gallery-item"><img src="https://raw.githubusercontent.com/Jaeha-Song/jllustratioh/main/images/Breakfast.JPG" alt="Breakfast" onclick="openModal(1)"></div>
         <div class="gallery-item"><img src="https://raw.githubusercontent.com/Jaeha-Song/jllustratioh/main/images/Breath of winter.JPG" alt="Breath of winter" onclick="openModal(2)"></div>
@@ -129,21 +108,13 @@
         <div class="gallery-item"><img src="https://raw.githubusercontent.com/Jaeha-Song/jllustratioh/main/images/Takoyaki.JPG" alt="Takoyaki" onclick="openModal(20)"></div>
         <div class="gallery-item"><img src="https://raw.githubusercontent.com/Jaeha-Song/jllustratioh/main/images/Insomnia.JPG" alt="Insomnia" onclick="openModal(21)"></div>
         <div class="gallery-item"><img src="https://raw.githubusercontent.com/Jaeha-Song/jllustratioh/main/images/Christmas eve.JPG" alt="Christmas eve" onclick="openModal(22)"></div>
-        <div class="gallery-item"><img src="https://raw.githubusercontent.com/Jaeha-Song/jllustratioh/main/images/ Im here.JPG" alt=" Im here" onclick="openModal(23)"></div>
+        <div class="gallery-item"><img src="https://raw.githubusercontent.com/Jaeha-Song/jllustratioh/main/images/ Im here.JPG" alt="Im here" onclick="openModal(23)"></div>
         <div class="gallery-item"><img src="https://raw.githubusercontent.com/Jaeha-Song/jllustratioh/main/images/A lazy afternoon.JPG" alt="A lazy afternoon" onclick="openModal(24)"></div>
         <div class="gallery-item"><img src="https://raw.githubusercontent.com/Jaeha-Song/jllustratioh/main/images/Afternoon at the cafe.JPG" alt="Afternoon at the cafe" onclick="openModal(25)"></div>
         <div class="gallery-item"><img src="https://raw.githubusercontent.com/Jaeha-Song/jllustratioh/main/images/Cool shade of a tree.JPG" alt="Cool shade of a tree" onclick="openModal(26)"></div>
         <div class="gallery-item"><img src="https://raw.githubusercontent.com/Jaeha-Song/jllustratioh/main/images/Waiting for the tram.JPG" alt="Waiting for the tram" onclick="openModal(27)"></div>
     </div>
 </div>
-
-<!-- About / Contact 생략: 기존과 동일 -->
-
-<footer>
-    <div class="box">
-        <p>&copy; 2025 Song jaeha. All rights reserved.</p>
-    </div>
-</footer>
 
 <!-- 모달 -->
 <div class="modal" id="imageModal" onclick="closeModal()">
@@ -154,64 +125,49 @@
 </div>
 
 <script>
-    const images = document.querySelectorAll(".gallery img");
-    let currentIndex = 0;
-    
-    function showSection(sectionId) {
-        document.querySelectorAll(".container").forEach(section => section.style.display = "none");
-        document.getElementById(sectionId).style.display = "block";
+const images = document.querySelectorAll(".gallery-item img");
+let currentIndex = 0;
 
-        document.querySelectorAll("nav a").forEach(link => link.classList.remove("active"));
-        event.target.classList.add("active");
+function showSection(id) {
+    document.querySelectorAll(".container").forEach(sec=>sec.style.display="none");
+    document.getElementById(id).style.display="block";
+    document.querySelectorAll("nav a").forEach(link=>link.classList.remove("active"));
+    event.target.classList.add("active");
+}
+
+function openModal(index){
+    currentIndex=index;
+    const modal=document.getElementById("imageModal");
+    modal.style.display="flex";
+    setTimeout(()=>modal.classList.add("show"),10);
+    updateModal();
+}
+
+function closeModal(){
+    const modal=document.getElementById("imageModal");
+    modal.classList.remove("show");
+    setTimeout(()=>modal.style.display="none",400);
+}
+
+function updateModal(){
+    const modalImg=document.getElementById("modalImg");
+    const modalTitle=document.getElementById("modalTitle");
+    const img=images[currentIndex];
+    modalImg.src=img.src;
+    modalTitle.textContent=img.alt;
+
+    if(img.naturalWidth>img.naturalHeight){
+        modalImg.style.height="80%";
+        modalImg.style.width="auto";
+    } else {
+        modalImg.style.height="auto";
+        modalImg.style.width="80%";
     }
+}
 
-    function openModal(index) {
-        const modal = document.getElementById("imageModal");
-        currentIndex = index;
-        modal.style.display = "flex";
-        setTimeout(() => modal.classList.add("show"), 10);
-        updateModal();
-    }
-
-    function closeModal() {
-        const modal = document.getElementById("imageModal");
-        modal.classList.remove("show");
-        setTimeout(() => modal.style.display = "none", 400);
-    }
-    
-    function updateModal() {
-        const modalImg = document.getElementById("modalImg");
-        const modalTitle = document.getElementById("modalTitle");
-    
-        const img = images[currentIndex];
-        modalImg.src = img.src;
-        modalTitle.textContent = img.alt;
-
-        if (img.naturalWidth > img.naturalHeight) {
-            modalImg.style.height = "80%";
-            modalImg.style.width = "auto";
-        } else {
-            modalImg.style.height = "auto";
-            modalImg.style.width = "80%";
-        }
-    }
-
-    function prevImage(event) {
-        event.stopPropagation();
-        currentIndex = (currentIndex - 1 + images.length) % images.length;
-        updateModal();
-    }
-
-    function nextImage(event) {
-        event.stopPropagation();
-        currentIndex = (currentIndex + 1) % images.length;
-        updateModal();
-    }
-
-    document.addEventListener("keydown", function(event) {
-        if (event.key === "ArrowLeft") prevImage(event);
-        if (event.key === "ArrowRight") nextImage(event);
-    });
+function prevImage(event){event.stopPropagation(); currentIndex=(currentIndex-1+images.length)%images.length; updateModal();}
+function nextImage(event){event.stopPropagation(); currentIndex=(currentIndex+1)%images.length; updateModal();}
+document.addEventListener("keydown",e=>{if(e.key==="ArrowLeft") prevImage(e); if(e.key==="ArrowRight") nextImage(e);});
 </script>
 
 </body>

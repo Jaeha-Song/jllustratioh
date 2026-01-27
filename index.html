@@ -139,12 +139,13 @@
         }
 
         .gallery img {
-            width: 100%;
-            height: auto;
+            height: 350px; /* 세로 이미지 기준 높이 */
+            width: auto;    /* 비율 유지하면서 가로 길이 자동 */
             border-radius: 4px;
             cursor: pointer;
             transition: transform 0.3s;
         }
+
 
         .gallery img:hover {
             transform: scale(1.05);
@@ -400,6 +401,7 @@
 
 </body>
 </html>
+
 
 
 

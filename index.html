@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="ko">
 <head>
@@ -62,7 +63,6 @@
         /* ✅ 라인 설정 */
         .divider {
             border-top: 1px solid #ccc; /* 라인의 스타일 */
-            margin-bottom: 10px;
         }
         /* ✅ 내비게이션 스타일 */
         nav {
@@ -70,6 +70,7 @@
             justify-content: center;
             gap: 20px;
             background-color: white;
+            padding-bottom: 10px;
         }
 
         nav a {
@@ -139,13 +140,12 @@
         }
 
         .gallery img {
-            height: 350px; /* 세로 이미지 기준 높이 */
-            width: auto;    /* 비율 유지하면서 가로 길이 자동 */
+            width: 100%;
+            height: auto;
             border-radius: 4px;
             cursor: pointer;
             transition: transform 0.3s;
         }
-
 
         .gallery img:hover {
             transform: scale(1.05);
@@ -262,9 +262,9 @@
             <img src="https://raw.githubusercontent.com/Jaeha-Song/jllustratioh/main/images/Christmas eve.JPG" alt="Christmas eve" onclick="openModal(22)">
             <img src="https://raw.githubusercontent.com/Jaeha-Song/jllustratioh/main/images/ Im here.JPG" alt=" Im here" onclick="openModal(23)">
             <img src="https://raw.githubusercontent.com/Jaeha-Song/jllustratioh/main/images/A lazy afternoon.JPG" alt="A lazy afternoon" onclick="openModal(24)">
-            <img src="https://raw.githubusercontent.com/Jaeha-Song/jllustratioh/main/images/Afternoon at the cafe.JPG" alt="Afternoon at the cafe" onclick="openModal(25)">
-            <img src="https://raw.githubusercontent.com/Jaeha-Song/jllustratioh/main/images/Cool shade of a tree.JPG" alt="Cool shade of a tree" onclick="openModal(26)">
-            <img src="https://raw.githubusercontent.com/Jaeha-Song/jllustratioh/main/images/Waiting for the tram.JPG" alt="Waiting for the tram" onclick="openModal(27)">
+            <img src="https://raw.githubusercontent.com/Jaeha-Song/jllustratioh/main/images/Afternoon-at-the-café.JPG" alt="Afternoon-at-the-café" onclick="openModal(25)">
+            <img src="https://raw.githubusercontent.com/Jaeha-Song/jllustratioh/main/images/Cool-shade-of-a-tree.JPG" alt="Cool-shade-of-a-tree" onclick="openModal(26)">
+            <img src="https://raw.githubusercontent.com/Jaeha-Song/jllustratioh/main/images/Waiting-for-the-tram.JPG" alt="Waiting-for-the-tram" onclick="openModal(27)">
         </div>
     </div>
 
@@ -401,12 +401,6 @@
 
 </body>
 </html>
-
-
-
-
-
-
 
 
 

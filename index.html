@@ -1,72 +1,171 @@
 <!DOCTYPE html>
 <html lang="ko">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>JAEHA'S ILLUSTRATION</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JAEHA'S ILLUSTRATION</title>
+    
+    <!-- 파비콘 -->
+    <link rel="icon" href="favicon.ico" type="image/x-icon">
 
-<link rel="icon" href="favicon.ico" type="image/x-icon">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
+    <!-- 구글 폰트 -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
 
-<style>
-* {margin:0; padding:0; box-sizing:border-box;}
-body {font-family:"Poppins", serif; font-weight:200; background:#fff;}
-a {text-decoration:none;}
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
 
-/* 헤더 */
-header {background:#fff; padding:20px; text-align:center;}
-nav {display:flex; justify-content:center; gap:20px; background:white;}
-nav a {text-decoration:none; color:black; cursor:pointer; transition:color 0.3s;}
-nav a.active {color:#ffa500;}
+        body {
+            font-family: "Poppins", serif;
+            font-weight: 200;
+            background-color: #ffffff;
+        }
 
-/* 갤러리 */
-.gallery {
-    display:grid;
-    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
-    gap:15px;
-    margin-top:20px;
-}
+        a {
+            text-decoration: none;
+            color: black;
+            cursor: pointer;
+        }
 
-.gallery-item {
-    width:100%;
-    height:250px; 
-    overflow:hidden;
-    border-radius:4px;
-}
+        header {
+            background-color: white;
+            padding: 20px;
+            text-align: center;
+        }
 
-.gallery-item img {
-    width:100%;
-    height:100%;
-    object-fit:cover;
-    cursor:pointer;
-    transition: transform 0.3s;
-}
+        nav {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            background-color: white;
+        }
 
-.gallery-item img:hover {transform:scale(1.05);}
+        nav a.active {
+            color: #ffa500;
+        }
 
-/* 모달 */
-.modal {
-    display:flex;
-    position:fixed;
-    z-index:1000;
-    left:0; top:0;
-    width:100%; height:100%;
-    background:rgba(0,0,0,0.8);
-    justify-content:center; align-items:center;
-    flex-direction:column;
-    text-align:center;
-    opacity:0; visibility:hidden;
-    transition:opacity 0.4s, visibility 0.4s;
-}
+        .container {
+            max-width: 1200px;
+            margin: auto;
+            padding: 20px;
+            display: none;
+        }
 
-.modal.show {opacity:1; visibility:visible;}
-.modal img {max-width:90%; max-height:80%; border-radius:4px; cursor:pointer;}
-.modal .title {margin-top:10px; font-size:14px; color:white; font-weight:light;}
-.arrow {position:absolute; top:50%; transform:translateY(-50%); font-size:20px; color:white; cursor:pointer; user-select:none;}
-.arrow.left {left:40px;} .arrow.right {right:40px;}
-</style>
+        .container h1 {
+            font-family: "Poppins", serif;
+            font-weight: 400;
+            font-size: 24px;
+            color: #666;
+            text-align: center;
+            line-height: 1.6;
+            margin-bottom: 10px;
+        }
+
+        .box {
+            padding: 20px;
+        }
+
+        p {
+            font-family: "Poppins", serif;
+            font-weight: 200;
+            font-size: 12px;
+            color: #999;
+            line-height: 1.6;
+            text-align: center;
+        }
+
+        /* ----------------- 갤러리 ----------------- */
+        .gallery {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 15px;
+            margin-top: 20px;
+        }
+
+        .thumb-wrapper {
+            height: 250px; /* 세로형 기준 높이 */
+            overflow: hidden;
+            border-radius: 4px;
+            position: relative;
+        }
+
+        .thumb-wrapper img {
+            height: 100%;
+            width: auto;
+            display: block;
+            margin: 0 auto;
+            object-fit: cover; /* 위아래 맞추고 좌우 잘림 */
+            cursor: pointer;
+            transition: transform 0.3s;
+        }
+
+        .thumb-wrapper img:hover {
+            transform: scale(1.05);
+        }
+
+        /* ----------------- 모달 ----------------- */
+        .modal {
+            display: flex;
+            position: fixed;
+            z-index: 1000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.8);
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            text-align: center;
+            opacity: 0;
+            visibility: hidden;
+            transition: opacity 0.4s ease-in-out, visibility 0.4s ease-in-out;
+        }
+
+        .modal.show {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .modal img {
+            max-width: 90%;
+            max-height: 80%;
+            border-radius: 4px;
+        }
+
+        .modal .title {
+            margin-top: 10px;
+            font-size: 14px;
+            color: white;
+            font-weight: 300;
+        }
+
+        .arrow {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            font-size: 30px;
+            color: white;
+            cursor: pointer;
+            user-select: none;
+        }
+
+        .arrow.left { left: 40px; }
+        .arrow.right { right: 40px; }
+
+        footer {
+            text-align: center;
+            padding: 20px;
+            background-color: white;
+            font-size: 14px;
+            color: #777;
+        }
+    </style>
 </head>
 <body>
 
@@ -81,38 +180,27 @@ nav a.active {color:#ffa500;}
     </nav>
 </header>
 
-<div class="container" id="gallery" style="display:block;">
-    <h1 class="textaligncenter">Gallery</h1>
+<!-- GALLERY -->
+<div class="container divider" id="gallery" style="display: block;">
+    <h1>Gallery</h1>
+    <div class="box">
+        <p>I hear color, taste sound, and see warmth.</p>
+    </div>
     <div class="gallery box">
-        <!-- gallery-item 안에 이미지 -->
-        <div class="gallery-item"><img src="https://raw.githubusercontent.com/Jaeha-Song/jllustratioh/main/images/Accompany.JPG" alt="Accompany" onclick="openModal(0)"></div>
-        <div class="gallery-item"><img src="https://raw.githubusercontent.com/Jaeha-Song/jllustratioh/main/images/Breakfast.JPG" alt="Breakfast" onclick="openModal(1)"></div>
-        <div class="gallery-item"><img src="https://raw.githubusercontent.com/Jaeha-Song/jllustratioh/main/images/Breath of winter.JPG" alt="Breath of winter" onclick="openModal(2)"></div>
-        <div class="gallery-item"><img src="https://raw.githubusercontent.com/Jaeha-Song/jllustratioh/main/images/Butterfly and me.JPG" alt="Butterfly and me" onclick="openModal(3)"></div>
-        <div class="gallery-item"><img src="https://raw.githubusercontent.com/Jaeha-Song/jllustratioh/main/images/What to draw.JPG" alt="What to draw" onclick="openModal(4)"></div>
-        <div class="gallery-item"><img src="https://raw.githubusercontent.com/Jaeha-Song/jllustratioh/main/images/Ride a bike.JPG" alt="Ride a bike" onclick="openModal(5)"></div>
-        <div class="gallery-item"><img src="https://raw.githubusercontent.com/Jaeha-Song/jllustratioh/main/images/Read on the beach.JPG" alt="Read on the beach" onclick="openModal(6)"></div>
-        <div class="gallery-item"><img src="https://raw.githubusercontent.com/Jaeha-Song/jllustratioh/main/images/Meet a summer.JPG" alt="Meet a summer" onclick="openModal(7)"></div>
-        <div class="gallery-item"><img src="https://raw.githubusercontent.com/Jaeha-Song/jllustratioh/main/images/Incoming call.JPG" alt="Incoming call" onclick="openModal(8)"></div>
-        <div class="gallery-item"><img src="https://raw.githubusercontent.com/Jaeha-Song/jllustratioh/main/images/In the bus.JPG" alt="In the bus" onclick="openModal(9)"></div>
-        <div class="gallery-item"><img src="https://raw.githubusercontent.com/Jaeha-Song/jllustratioh/main/images/Dish wash.JPG" alt="Dish wash" onclick="openModal(10)"></div>
-        <div class="gallery-item"><img src="https://raw.githubusercontent.com/Jaeha-Song/jllustratioh/main/images/Coin laundry.JPG" alt="Coin laundry" onclick="openModal(11)"></div>
-        <div class="gallery-item"><img src="https://raw.githubusercontent.com/Jaeha-Song/jllustratioh/main/images/Seoul forest.JPG" alt="Seoul forest" onclick="openModal(12)"></div>
-        <div class="gallery-item"><img src="https://raw.githubusercontent.com/Jaeha-Song/jllustratioh/main/images/Air play.JPG" alt="Air play" onclick="openModal(13)"></div>
-        <div class="gallery-item"><img src="https://raw.githubusercontent.com/Jaeha-Song/jllustratioh/main/images/Fishing.JPG" alt="Fishing" onclick="openModal(14)"></div>
-        <div class="gallery-item"><img src="https://raw.githubusercontent.com/Jaeha-Song/jllustratioh/main/images/Non-face-to-face.JPG" alt="Non-face-to-face" onclick="openModal(15)"></div>
-        <div class="gallery-item"><img src="https://raw.githubusercontent.com/Jaeha-Song/jllustratioh/main/images/Run through the park.JPG" alt="Run through the park" onclick="openModal(16)"></div>
-        <div class="gallery-item"><img src="https://raw.githubusercontent.com/Jaeha-Song/jllustratioh/main/images/New year sunrise.JPG" alt="New year sunrise" onclick="openModal(17)"></div>
-        <div class="gallery-item"><img src="https://raw.githubusercontent.com/Jaeha-Song/jllustratioh/main/images/Line 5.JPG" alt="Line 5" onclick="openModal(18)"></div>
-        <div class="gallery-item"><img src="https://raw.githubusercontent.com/Jaeha-Song/jllustratioh/main/images/Walk along the river.JPG" alt="Walk along the river" onclick="openModal(19)"></div>
-        <div class="gallery-item"><img src="https://raw.githubusercontent.com/Jaeha-Song/jllustratioh/main/images/Takoyaki.JPG" alt="Takoyaki" onclick="openModal(20)"></div>
-        <div class="gallery-item"><img src="https://raw.githubusercontent.com/Jaeha-Song/jllustratioh/main/images/Insomnia.JPG" alt="Insomnia" onclick="openModal(21)"></div>
-        <div class="gallery-item"><img src="https://raw.githubusercontent.com/Jaeha-Song/jllustratioh/main/images/Christmas eve.JPG" alt="Christmas eve" onclick="openModal(22)"></div>
-        <div class="gallery-item"><img src="https://raw.githubusercontent.com/Jaeha-Song/jllustratioh/main/images/ Im here.JPG" alt="Im here" onclick="openModal(23)"></div>
-        <div class="gallery-item"><img src="https://raw.githubusercontent.com/Jaeha-Song/jllustratioh/main/images/A lazy afternoon.JPG" alt="A lazy afternoon" onclick="openModal(24)"></div>
-        <div class="gallery-item"><img src="https://raw.githubusercontent.com/Jaeha-Song/jllustratioh/main/images/Afternoon at the cafe.JPG" alt="Afternoon at the cafe" onclick="openModal(25)"></div>
-        <div class="gallery-item"><img src="https://raw.githubusercontent.com/Jaeha-Song/jllustratioh/main/images/Cool shade of a tree.JPG" alt="Cool shade of a tree" onclick="openModal(26)"></div>
-        <div class="gallery-item"><img src="https://raw.githubusercontent.com/Jaeha-Song/jllustratioh/main/images/Waiting for the tram.JPG" alt="Waiting for the tram" onclick="openModal(27)"></div>
+        <div class="thumb-wrapper"><img src="https://raw.githubusercontent.com/Jaeha-Song/jllustratioh/main/images/Accompany.JPG" alt="Accompany" onclick="openModal(0)"></div>
+        <div class="thumb-wrapper"><img src="https://raw.githubusercontent.com/Jaeha-Song/jllustratioh/main/images/Breakfast.JPG" alt="Breakfast" onclick="openModal(1)"></div>
+        <div class="thumb-wrapper"><img src="https://raw.githubusercontent.com/Jaeha-Song/jllustratioh/main/images/Breath of winter.JPG" alt="Breath of winter" onclick="openModal(2)"></div>
+        <div class="thumb-wrapper"><img src="https://raw.githubusercontent.com/Jaeha-Song/jllustratioh/main/images/Butterfly and me.JPG" alt="Butterfly and me" onclick="openModal(3)"></div>
+        <div class="thumb-wrapper"><img src="https://raw.githubusercontent.com/Jaeha-Song/jllustratioh/main/images/What to draw.JPG" alt="What to draw" onclick="openModal(4)"></div>
+        <div class="thumb-wrapper"><img src="https://raw.githubusercontent.com/Jaeha-Song/jllustratioh/main/images/Ride a bike.JPG" alt="Ride a bike" onclick="openModal(5)"></div>
+        <div class="thumb-wrapper"><img src="https://raw.githubusercontent.com/Jaeha-Song/jllustratioh/main/images/Read on the beach.JPG" alt="Read on the beach" onclick="openModal(6)"></div>
+        <div class="thumb-wrapper"><img src="https://raw.githubusercontent.com/Jaeha-Song/jllustratioh/main/images/Meet a summer.JPG" alt="Meet a summer" onclick="openModal(7)"></div>
+        <div class="thumb-wrapper"><img src="https://raw.githubusercontent.com/Jaeha-Song/jllustratioh/main/images/Incoming call.JPG" alt="Incoming call" onclick="openModal(8)"></div>
+        <div class="thumb-wrapper"><img src="https://raw.githubusercontent.com/Jaeha-Song/jllustratioh/main/images/In the bus.JPG" alt="In the bus" onclick="openModal(9)"></div>
+        <!-- 여기서 24~26 포함 -->
+        <div class="thumb-wrapper"><img src="https://raw.githubusercontent.com/Jaeha-Song/jllustratioh/main/images/A lazy afternoon.JPG" alt="A lazy afternoon" onclick="openModal(24)"></div>
+        <div class="thumb-wrapper"><img src="https://raw.githubusercontent.com/Jaeha-Song/jllustratioh/main/images/Afternoon at the cafe.JPG" alt="Afternoon at the cafe" onclick="openModal(25)"></div>
+        <div class="thumb-wrapper"><img src="https://raw.githubusercontent.com/Jaeha-Song/jllustratioh/main/images/Cool shade of a tree.JPG" alt="Cool shade of a tree" onclick="openModal(26)"></div>
     </div>
 </div>
 
@@ -124,50 +212,69 @@ nav a.active {color:#ffa500;}
     <span class="arrow right" onclick="nextImage(event)">&#9654;</span>
 </div>
 
+<footer>
+    <p>&copy; 2025 Song jaeha. All rights reserved.</p>
+</footer>
+
 <script>
-const images = document.querySelectorAll(".gallery-item img");
+const images = document.querySelectorAll(".gallery img");
 let currentIndex = 0;
 
-function showSection(id) {
-    document.querySelectorAll(".container").forEach(sec=>sec.style.display="none");
-    document.getElementById(id).style.display="block";
-    document.querySelectorAll("nav a").forEach(link=>link.classList.remove("active"));
+function showSection(sectionId) {
+    document.querySelectorAll(".container").forEach(section => section.style.display = "none");
+    document.getElementById(sectionId).style.display = "block";
+
+    document.querySelectorAll("nav a").forEach(link => link.classList.remove("active"));
     event.target.classList.add("active");
 }
 
-function openModal(index){
-    currentIndex=index;
-    const modal=document.getElementById("imageModal");
-    modal.style.display="flex";
-    setTimeout(()=>modal.classList.add("show"),10);
+function openModal(index) {
+    const modal = document.getElementById("imageModal");
+    currentIndex = index;
+    modal.style.display = "flex";
+    setTimeout(() => modal.classList.add("show"), 10);
     updateModal();
 }
 
-function closeModal(){
-    const modal=document.getElementById("imageModal");
+function closeModal() {
+    const modal = document.getElementById("imageModal");
     modal.classList.remove("show");
-    setTimeout(()=>modal.style.display="none",400);
+    setTimeout(() => modal.style.display = "none", 400);
 }
 
-function updateModal(){
-    const modalImg=document.getElementById("modalImg");
-    const modalTitle=document.getElementById("modalTitle");
-    const img=images[currentIndex];
-    modalImg.src=img.src;
-    modalTitle.textContent=img.alt;
+function updateModal() {
+    const modalImg = document.getElementById("modalImg");
+    const modalTitle = document.getElementById("modalTitle");
 
-    if(img.naturalWidth>img.naturalHeight){
-        modalImg.style.height="80%";
-        modalImg.style.width="auto";
+    const img = images[currentIndex];
+    modalImg.src = img.src;
+    modalTitle.textContent = img.alt;
+
+    if (img.naturalWidth > img.naturalHeight) {
+        modalImg.style.height = "80%";
+        modalImg.style.width = "auto";
     } else {
-        modalImg.style.height="auto";
-        modalImg.style.width="80%";
+        modalImg.style.width = "80%";
+        modalImg.style.height = "auto";
     }
 }
 
-function prevImage(event){event.stopPropagation(); currentIndex=(currentIndex-1+images.length)%images.length; updateModal();}
-function nextImage(event){event.stopPropagation(); currentIndex=(currentIndex+1)%images.length; updateModal();}
-document.addEventListener("keydown",e=>{if(e.key==="ArrowLeft") prevImage(e); if(e.key==="ArrowRight") nextImage(e);});
+function prevImage(event) {
+    event.stopPropagation();
+    currentIndex = (currentIndex - 1 + images.length) % images.length;
+    updateModal();
+}
+
+function nextImage(event) {
+    event.stopPropagation();
+    currentIndex = (currentIndex + 1) % images.length;
+    updateModal();
+}
+
+document.addEventListener("keydown", function(event) {
+    if (event.key === "ArrowLeft") prevImage(event);
+    if (event.key === "ArrowRight") nextImage(event);
+});
 </script>
 
 </body>

@@ -139,12 +139,14 @@
         }
 
         .gallery img {
-            height: 350px; /* 세로 이미지 기준 높이 */
-            width: auto;    /* 비율 유지하면서 가로 길이 자동 */
+            width: 100%;       /* 그리드 셀에 맞춰 꽉 채움 */
+            height: 250px;     /* 동일 높이 */
+            object-fit: cover; /* 비율 유지하면서 잘라서 균일하게 */
             border-radius: 4px;
             cursor: pointer;
             transition: transform 0.3s;
         }
+
 
 
         .gallery img:hover {
@@ -372,14 +374,25 @@
             modal.classList.remove("show");
             setTimeout(() => modal.style.display = "none", 400);
         }
-
+        
         function updateModal() {
             const modalImg = document.getElementById("modalImg");
             const modalTitle = document.getElementById("modalTitle");
-
-            modalImg.src = images[currentIndex].src;
-            modalTitle.textContent = images[currentIndex].alt;
+        
+            const img = images[currentIndex];
+            modalImg.src = img.src;
+            modalTitle.textContent = img.alt;
+        
+            // 모달에서 가로 이미지는 세로 이미지 높이 기준으로 보여주기
+            if (img.naturalWidth > img.naturalHeight) {
+                modalImg.style.height = "80%";   // 원하는 모달 높이 비율
+                modalImg.style.width = "auto";   // 폭은 자동
+            } else {
+                modalImg.style.height = "auto";
+                modalImg.style.width = "80%";    // 세로 이미지는 높이 자동, 폭 맞춤
+            }
         }
+
 
         function prevImage(event) {
             event.stopPropagation();
@@ -401,6 +414,7 @@
 
 </body>
 </html>
+
 
 
 
